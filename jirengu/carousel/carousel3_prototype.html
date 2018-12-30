@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .carousel {
+      width: 300px;
+      height: 216px;
+      overflow: hidden;
+      position: relative;
+      margin: 50px auto;
+    }
+
+    .img-ct {
+      font-size: 0;
+      position: absolute;
+      top: 0;
+    }
+
+    .img-ct li {
+      display: inline-block;
+    }
+
+    .img-ct li img {
+      width: 300px;
+    }
+
+    .arrow {
+      position: absolute;
+      top: calc(50% - 15px);
+      line-height: 30px;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      font-size: 18px;
+      text-decoration: none;
+      background-color: rgba(33, 33, 33, 0.6);
+      color: #fff;
+      border-radius: 15px;
+    }
+
+    .arrow:hover {
+      background-color: rgba(77, 77, 77);
+    }
+
+    .pre {
+      left: 0;
+    }
+
+    .next {
+      right: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="carousel" id="ca1">
+    <ul class="img-ct">
+      <li>
+        <a href="#"><img src="imgs/1.jpg" alt="" /></a>
+      </li>
+      <li>
+        <a href="#"><img src="imgs/2.jpg" alt="" /></a>
+      </li>
+      <li>
+        <a href="#"><img src="imgs/3.jpg" alt="" /></a>
+      </li>
+      <li>
+        <a href="#"><img src="imgs/4.jpg" alt="" /></a>
+      </li>
+    </ul>
+    <a href="#" class="pre arrow">
+      < </a> <a href="#" class="next arrow"> >
+    </a>
+  </div>
+  <div class="carousel" id="ca2">
+    <ul class="img-ct">
+      <li>
+        <a href="#"><img src="imgs/1.jpg" alt="" /></a>
+      </li>
+      <li>
+        <a href="#"><img src="imgs/2.jpg" alt="" /></a>
+      </li>
+      <li>
+        <a href="#"><img src="imgs/3.jpg" alt="" /></a>
+      </li>
+      <li>
+        <a href="#"><img src="imgs/4.jpg" alt="" /></a>
+      </li>
+    </ul>
+    <a href="#" class="pre arrow">
+      < </a> <a href="#" class="next arrow"> >
+    </a>
+  </div>
+
+  <script src="./jquery-1.12.3.min.js"></script>
+  <script>
+    function Carousel($carousel) {
+      this.$carousel = $carousel;
+      var $ct = this.$ct = $carousel.find(".img-ct");
+      this.$pre = $carousel.find(".pre");
+      this.$next = $carousel.find(".next");
+      this.imgWidth = $carousel.find("li").width();
+      this.imgSize = $carousel.find("li").length;
+
+      $ct.css("width", this.imgSize * this.imgWidth);
+      this.bind();
+    }
+    Carousel.prototype = {
+      bind: function () {
+        var _this = this;
+        this.$pre.on("click", function () {
+          _this.showPre();
+        })
+        this.$next.on("click", function () {
+          _this.showNext();
+        })
+      },
+      showPre: function () {
+        this.$ct.prepend(this.$ct.children().last());
+        this.$ct.css("left", 0 - this.imgWidth);
+        this.$ct.animate({
+          left: 0
+        }, 500);
+      },
+      showNext: function () {
+        var $ct = this.$ct;
+        $ct.animate({
+            left: 0 - this.imgWidth
+          }, 500,
+          function () {
+            $ct.append($ct.children().first());
+            $ct.css("left", 0);
+          })
+      }
+    }
+
+    new Carousel($("#ca1"));
+    new Carousel($("#ca2"));
+  </script>
+</body>
+
+</html>
