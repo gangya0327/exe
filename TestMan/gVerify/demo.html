@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #verify-img{
+        width: 180px;
+        height: 50px;
+    }
+    </style>
+</head>
+
+<body>
+    <input type="text" name="" id="inp">
+    <button id="submit1">确定</button>
+    <div id="verify-img"></div>
+
+    <script src="./gVerify.js"></script>
+    <script src="./jquery.1.11.min.js"></script>
+
+    <script>
+        //初始化验证码
+        var verifyCode = new GVerify({
+            id: "verify-img", //容器的ID
+            type: "number", //图形验证码的类型：blend-数字字母混合类型（默认）、number-纯数字、letter-纯字母
+            width: "100", //默认canvas宽度
+            height: "30", //默认canvas高度
+        });
+        //刷新验证码
+        verifyCode.refresh();
+        //校验验证码
+        $("#submit1").click(function(){
+            console.log(verifyCode.validate($("#inp").val()));
+            ;
+        })
+    </script>
+</body>
+
+</html>

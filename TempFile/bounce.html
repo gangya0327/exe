@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" name="" id="search">
+<script>
+
+ 
+ function debounce(handler, delay) {
+     console.log(1);
+     
+    var timer;
+    console.log(timer);
+    return function () {
+        console.log(44143);
+        var self = this, arg = arguments;
+ 
+        clearTimeout(timer);
+ 
+        timer = setTimeout(function () {
+            handler.apply(self, arg)
+        }, delay)
+    }
+}
+ 
+function showAll(e) {
+    console.log(e.target)
+    console.log('执行查询操作', new Date().getTime())
+}
+ 
+var searchInput = document.getElementById('search');
+searchInput.addEventListener('keydown', debounce(showAll, 500), false)
+    
+</script>
+</body>
+</html>
