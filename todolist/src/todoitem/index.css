@@ -1,0 +1,11 @@
+.item-container {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    position: relative;
+}
+.del-container{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
