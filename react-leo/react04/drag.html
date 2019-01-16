@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./bower_components/react/react.js"></script>
+    <script src="./bower_components/react/react-dom.js"></script>
+    <script src="./bower_components/babel/browser.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+        padding: 0;
+        margin: 0;
+    }
+    .dragDiv{
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        position: relative;
+    }
+    </style>
+
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class Drag extends React.Component{
+            constructor(){
+                super()
+                this.state = {
+                    needX: 100,
+                    needY: 0,
+                }       
+                this.disX=0,
+                this.disY=0
+            }
+            fnDown(e) {
+                this.disX = e.clientX - e.target.offsetLeft
+                this.disY = e.clientY - e.target.offsetTop
+
+                console.log(this.disX,this.disY)
+
+                document.onmousemove = this.fnMove.bind(this)
+                document.onmouseup = this.fnUp.bind(this)
+            }  
+            fnMove(e){
+                this.setState({
+                    needX: e.clientX - this.disX,
+                    needY: e.clientY - this.disY
+                })
+            }
+            fnUp(){
+                document.onmousemove = null
+                document.onmouseup = null
+            }
+            render(){
+                return (
+                    <div className="dragDiv" 
+                        style={{left: this.state.needX,top: this.state.needY}}
+                        onMouseDown={this.fnDown.bind(this)}
+                    ></div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Drag />,
+            app
+        )
+    </script>
+</body>
+
+</html>
