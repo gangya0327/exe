@@ -4,6 +4,7 @@ import TodoForm from "../todoform";
 import "./index.css";
 
 export default class TodoBox extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {

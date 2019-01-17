@@ -8,7 +8,7 @@
     <script src="./bower_components/react/react.js"></script>
     <script src="./bower_components/react/react-dom.js"></script>
     <script src="./bower_components/babel/browser.js"></script>
-    <script src="./bower_components/jquery/jquery.js"></script>
+    <script src="./bower_components/axios/dist/axios.js"></script>
     <title>Document</title>
 </head>
 
@@ -27,16 +27,12 @@
                 this.ajaxToData()
             }
             ajaxToData(){
-                let _this = this
-                $.ajax({
-                    url: 'http://localhost:2831/get',
-                    type: 'get',
-                    success: function(res) {
-                        console.log(res)
-                        _this.setState({
-                            arr: res
-                        })
-                    }
+                console.log(axios)
+                axios.get("http://localhost:2831/get").then((res)=>{
+                    console.log(res.data)
+                    this.setState({
+                        arr: res.data
+                    })
                 })
             }
             render(){
