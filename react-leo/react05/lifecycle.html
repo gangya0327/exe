@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./bower_components/react/react.js"></script>
+    <script src="./bower_components/react/react-dom.js"></script>
+    <script src="./bower_components/babel/browser.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class Drag extends React.Component{
+            constructor(props){
+                super(props)
+                this.state = {
+                    msg: '666'
+                }
+            }
+            componentWillMount(){
+                console.log(this.props.data,this.state.msg)
+                console.log('组件挂载前...')
+            }
+            componentDidMount(){
+                console.log(document.getElementById('dd'))
+                console.log('组件挂载后')
+            }
+            clickInput(e){
+                this.setState({
+                    msg: Math.random()
+                })
+                e.nativeEvent.stopImmediatePropagation()
+            }
+            componentWillUpdate(){
+                console.log(this.state.msg)
+                console.log('组件更新前...')
+            }
+            componentDidUpdate(){
+                console.log(this.state.msg)
+                console.log('组件更新后')
+            }            
+            componentWillUnmount(){
+                console.log('组件卸载前...')
+            }
+            render(){
+                return (
+                    <div id="dd">
+                        <input type="button" value='点击' onClick={this.clickInput.bind(this)}/>
+                        <div>{this.state.msg}</div>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Drag data="999" />, app)
+
+        document.onclick = function(){
+                ReactDOM.render(<h1>444</h1>,app)
+            }
+    </script>
+</body>
+
+</html>

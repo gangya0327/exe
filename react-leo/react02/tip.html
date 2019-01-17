@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bootstrap 实例 - 工具提示（Tooltip）插件</title>
+
+</head>
+
+<body>
+
+    <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <!-- <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+    <link rel="stylesheet" href="./layui/bootstrap.min.css">
+    <script src="./layui/jquery.1.11.min.js"></script>
+    <script src="./layui/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <script src="./layui/layui.all.js"></script>
+    <script src="./layui/layui.js"></script>
+
+    <br>
+    <br>
+    <label class="" data-toggle="tooltip" title="默认的 Tooltip"><span class="glyphicon glyphicon-info-sign" title="dddd"></span>手机号*</label>
+    这是一个 <a href="#" class="" data-toggle="tooltip" title="默认的 Tooltip">默认的 Tooltip</a>.
+    这是一个 <a href="#" class="tooltip-test" data-toggle="tooltip" data-placement="left" title="左侧的 Tooltip">左侧的 Tooltip</a>.
+    这是一个 <a href="#" data-toggle="tooltip" data-placement="top" title="顶部的 Tooltip">顶部的 Tooltip</a>.
+    这是一个 <a href="#" data-toggle="tooltip" data-placement="bottom" title="底部的 Tooltip">底部的 Tooltip</a>.
+    这是一个 <a href="#" data-toggle="tooltip" data-placement="right" title="右侧的 Tooltip">右侧的 Tooltip</a>
+    <br>
+    <h4>工具提示（Tooltip）插件 - 按钮</h4>
+    <button type="" class="" data-toggle="tooltip" title="默认的 Tooltip"> 默认的 Tooltip</button>
+    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="左侧的 Tooltip">左侧的
+        Tooltip
+    </button>
+    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="顶部的 Tooltip">顶部的
+        Tooltip
+    </button>
+    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="底部的 Tooltip">底部的
+        Tooltip
+    </button>
+    <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="右侧的 Tooltip">右侧的
+        Tooltip</button>
+
+    <form class="layui-form">
+        <label class="layui-form-label">开关-默认开</label>
+        <div class="layui-input-block">
+            <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
+        </div>
+        <input type="checkbox" name="isNeedApproval" lay-skin="switch" id="isNeedApproval" value="1">
+    </form>
+
+    <script>
+        $(function () {
+            $("[data-toggle='tooltip']").tooltip();
+        });
+
+        form.on('switch(switchTest)', function (data) {
+            layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });
+    </script>
+
+
+
+    <i class="layui-icon layui-icon-tips" style="font-size: 30px; color: #1E9FFF;"></i>
+
+
+</body>
+
+</html>
