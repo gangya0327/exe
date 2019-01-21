@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="./bower_components/react/react.js"></script>
+  <script src="./bower_components/react/react-dom.js"></script>
+  <script src="./bower_components/babel/browser.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script type="text/babel">
+        class TabNode extends React.Component {
+          render() {
+            let oInput = []
+            for(var i=0;i<this.props.topValueArr.length;i++){
+              oInput.push(<input type='button' value={this.props.topValueArr[i]} key={i}/>)
+            }
+            return (
+                <div>
+                  {oInput}
+                </div>
+              )
+          }
+        }
+        class BottomNode extends React.Component {
+          render() {
+            let aDiv = []
+            for(var i=0;i<this.props.bottomValueArr.length;i++){
+              aDiv.push(<div className="mydiv" key={i}>{this.props.bottomValueArr[i]}</div>)
+            }
+            return (
+                <div>
+                  {aDiv}
+                </div>
+              )
+          }
+        }
+        
+        
+
+        class Tab extends React.Component{
+            constructor(){
+                super()               
+            }
+            render(){
+                console.log(this.props.tabJson)
+                return (
+                   <div>
+                       <TabNode topValueArr={this.props.tabJson.topValue}/>
+                       <BottomNode bottomValueArr={this.props.tabJson.bottomValue}/>
+                   </div> 
+                )
+            }
+        }
+          
+        ReactDOM.render(<Tab tabJson={{"topValue": ["中国","瑞士","美国","俄罗斯","法国"],"bottomValue": ["CHINA","SWISS","AMERICA","RUSSIA","FRANCE"],"timer": 2000}}/>, app)
+        
+    </script>
+</body>
+
+</html>
