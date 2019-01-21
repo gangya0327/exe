@@ -9,17 +9,36 @@
   <script src="./bower_components/react/react-dom.js"></script>
   <script src="./bower_components/babel/browser.js"></script>
   <title>Document</title>
+  <style>
+    .mydiv{
+      border: 1px solid #ccc;
+      height: 150px;
+      width: 200px;
+    }
+    .active{
+      color: #fff;
+      background-color: red;
+      border: 1px solid red;
+    }
+  </style>
 </head>
 
 <body>
   <div id="app"></div>
 
   <script type="text/babel">
-        class TabNode extends React.Component {
+    class TabNode extends React.Component {
+          clickTab(index){
+            this.props.changeTab(index)
+          }
           render() {
             let oInput = []
             for(var i=0;i<this.props.topValueArr.length;i++){
-              oInput.push(<input type='button' value={this.props.topValueArr[i]} key={i}/>)
+              oInput.push(<input className={i===this.props.tabIndex?"active":""} 
+                                 type='button' value={this.props.topValueArr[i]} 
+                                 key={i}
+                                 onClick={this.clickTab.bind(this,i)}
+                                 />)
             }
             return (
                 <div>
@@ -32,7 +51,9 @@
           render() {
             let aDiv = []
             for(var i=0;i<this.props.bottomValueArr.length;i++){
-              aDiv.push(<div className="mydiv" key={i}>{this.props.bottomValueArr[i]}</div>)
+              aDiv.push(<div className="mydiv" key={i} style={{"display": i===this.props.tabIndex?"block":"none"}}>
+                      {this.props.bottomValueArr[i]} 
+                      </div>)
             }
             return (
                 <div>
@@ -41,19 +62,46 @@
               )
           }
         }
-        
-        
-
         class Tab extends React.Component{
             constructor(){
-                super()               
+                super()
+                this.state={
+                  index: 0,
+                  timer: null
+                }             
+            }
+            changeTab(index){
+              console.log(index)
+              this.setState({
+                index
+              })
+            }
+            componentWillMount(){
+              this.autoPlay()
+            }
+            autoPlay(){
+              clearInterval(this.timer)
+              this.timer = setInterval(() => {
+                  let index = this.state.index
+                  index++
+                  index === this.props.tabJson.topValue.length && (index = 0)
+                  this.setState({index})
+              }, this.props.tabJson.timer);
+            }
+            onMouseOver(){
+              clearInterval(this.timer)
+            }
+            onMouseOut(){
+              this.autoPlay()
             }
             render(){
-                console.log(this.props.tabJson)
                 return (
-                   <div>
-                       <TabNode topValueArr={this.props.tabJson.topValue}/>
-                       <BottomNode bottomValueArr={this.props.tabJson.bottomValue}/>
+                   <div onMouseOver={this.onMouseOver.bind(this)}
+                        onMouseOut={this.onMouseOut.bind(this)}>
+                       <TabNode topValueArr={this.props.tabJson.topValue} 
+                                tabIndex={this.state.index}
+                                changeTab={this.changeTab.bind(this)}/>
+                       <BottomNode bottomValueArr={this.props.tabJson.bottomValue} tabIndex={this.state.index}/>
                    </div> 
                 )
             }

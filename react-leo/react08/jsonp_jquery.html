@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="./bower_components/react/react.js"></script>
+  <script src="./bower_components/react/react-dom.js"></script>
+  <script src="./bower_components/babel/browser.js"></script>
+  <script src="./bower_components/jquery/jquery.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script type="text/babel">
+        class Search extends React.Component{
+            constructor(){
+                super()
+                this.state = {
+                  myArr: []
+                }
+            }
+            change(e){
+              $.ajax({
+                url: "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+e.target.value,
+                type: "get",
+                jsonp: "cb",
+                dataType: "jsonp",
+                success: function(data) {
+                  console.log(data)
+                  let aLi = []
+                  data.s.forEach((v,i)=>{
+                    aLi.push(<li key={i}><a href={"https://www.baidu.com/s?wd="+v}>{v}</a></li>)
+                  })
+                  this.setState({
+                    myArr: aLi
+                  })
+                }.bind(this)
+              })
+            }
+            render(){
+                return (
+                   <div>
+                     <input type="text" onChange={this.change.bind(this)}/>
+                     <ul id="ul">
+                      {this.state.myArr}
+                     </ul>
+                   </div>
+                )
+            }
+        }
+          
+        ReactDOM.render(<Search />, app)
+    </script>
+</body>
+</html>
