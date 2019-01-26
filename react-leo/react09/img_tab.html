@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./bower_components/react/react.js"></script>
+    <script src="./bower_components/react/react-dom.js"></script>
+    <script src="./bower_components/babel/browser.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .out-box{
+            width: 400px;
+            overflow: hidden;
+            border: 1px solid #333;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            left: 50%;
+            top: 50%;
+        }
+        .top-div{
+            width: 100%;
+            height: 300px;
+            float: left;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        let Json = {
+            pictures: ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg"],
+            text: ["这是第一张","这是第二张","这是第三张","这是第四张","这是第五张","这是第六张","这是第七张"]
+        }
+        class TopNode extends React.Component{
+            render(){
+                return(
+                    <div className="top-div">
+                        <ul></ul>    
+                    </div>
+                )
+            }
+        }
+        class CenterNode extends React.Component{
+            render(){
+                return(
+                    <div>CenterNode</div>
+                )
+            }
+        }
+        class BottomNode extends React.Component{
+            render(){
+                return(
+                    <div>BottomNode</div>
+                )
+            }
+        }
+            
+        class Mytab extends React.Component {
+            render() {          
+                console.log(this.props.JsonTo)
+                return (
+                    <div className="out-box">
+                        <TopNode picUrl={this.props.JsonTo.pictures} />
+                        <CenterNode />
+                        <BottomNode />
+                    </div>
+                    )
+                }
+        }
+                    
+        ReactDOM.render(<Mytab JsonTo={Json}/>, app)        
+    </script>
+</body>
+
+</html>
