@@ -44,11 +44,38 @@
             transition: 0.7s;
         }
 
+        .top-div .left-click {
+            position: absolute;
+            z-index: 3;
+            left: 3px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .top-div .right-click {
+            position: absolute;
+            z-index: 3;
+            right: 3px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #fff;
+            cursor: pointer;
+        }
+
         .top-div ul li {
             width: 400px;
             height: 300px;
             float: left;
             background-size: cover;
+            overflow: hidden;
+        }
+
+        .top-div ul li img {
+            width: 100%;
+            height: 100%;
+            transition: 0.3s;
         }
 
         .center-div {
