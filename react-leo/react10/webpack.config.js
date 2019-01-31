@@ -9,8 +9,8 @@ module.exports = {
             use: ["style-loader", "css-loader"]
         }, {
             test: /\.js$/,
-            use: ["babel-loader"]
+            use: ["babel-loader","react-hot-loader"],
+            exclude: /node_modules/
         }]
-    },
-    mode: 'development' // 设置mode
+    }
 }

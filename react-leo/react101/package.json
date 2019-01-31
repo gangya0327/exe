@@ -1,5 +1,5 @@
 {
-  "name": "react10",
+  "name": "react101",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,13 +10,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.3",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.10",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-hot-loader": "^1.3.1",
     "style-loader": "^0.23.1"
   }
