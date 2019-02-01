@@ -1,16 +1,17 @@
 module.exports = {
-    entry: "./index.js",
+    entry: './index.js',
     output: {
-        filename: "./bundle123.js"
+        filename: 'bundle789.js'
     },
     module: {
         rules: [{
             test: /\.css$/,
-            use: ["style-loader", "css-loader"]
-        }, {
+            use: ['style-loader','css-loader']
+        },{
             test: /\.js$/,
-            use: ["babel-loader","react-hot-loader"],
+            use: ['react-hot-loader','babel-loader'],
             exclude: /node_modules/
         }]
-    }
+    },
+    mode: 'development'
 }

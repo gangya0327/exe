@@ -1,13 +1,17 @@
-document.write("ok!")
-import
-json, {
-    a,
-    b,
-    c
+require('./index.css');
+
+let a = 98
+document.write(a)
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+class Leo extends React.Component {
+    render() {
+        return (
+            <div>hi leo</div>
+        )
+    }
 }
-from './a'
-console.log(json.a)
-console.log(json.b)
-console.log(a)
-console.log(b)
-console.log(c)
+
+ReactDOM.render(<Leo />, document.getElementById("app"))

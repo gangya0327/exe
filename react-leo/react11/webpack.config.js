@@ -1,12 +1,12 @@
 module.exports = {
     entry: './index.js',
     output: {
-        filename: 'bundle789.js'
+        filename: './bundle789.js'
     },
     devServer: {
         port: 7788,
         open: true,
-        contentBase: './',
+        contentBase: './dist',
         inline: true
     },
     module: {
