@@ -1,0 +1,180 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tab {
+  width: 960px;
+  height: 480px;
+  position: relative;
+  margin: 100px auto;
+  overflow: hidden;
+}
+
+.tab ul {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: .3s;
+}
+
+.tab ul li {
+  height: 100%;
+  width: 960px;
+  float: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab ul li img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.tab ol {
+  z-index: 20;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  bottom: 10px;
+}
+
+.tab ol li {
+  background-color: #fff;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  float: left;
+  margin: 0 8px;
+  cursor: pointer;
+  transform: scale(1);
+  transition-duration: .3s;
+}
+
+.tab ol li.active {
+  transform: scale(1.8);
+}
+
+.left {
+  width: 50px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  cursor: pointer;
+}
+
+.left:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-top: 14px solid transparent;
+  border-left: none;
+  border-right: 14px solid #fff;
+  border-bottom: 14px solid transparent;
+}
+
+
+.right {
+  width: 50px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  cursor: pointer;
+}
+
+.right:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-top: 14px solid transparent;
+  border-left: 14px solid #fff;
+  border-right: none;
+  border-bottom: 14px solid transparent;
+}
+
+.left:hover,
+.right:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.line {
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 5px;
+  z-index: 19;
+}
+
+.myInput {
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  margin: 50px;
+  text-indent: 10px;
+  font-size: 26px;
+  background-color: #d9d9d9;
+  transition: .3s;
+}
+
+.active {
+  width: 260px;
+  color: #777;
+  background-color: #ff888d;
+}
