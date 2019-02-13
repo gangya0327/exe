@@ -37,15 +37,34 @@ class App extends Component {
                 background: red;
                 margin: 20px auto;
             }
+            .leo {
+                width: 150px;
+                height: 80px;
+                background: red;
+            }
+            .leo-enter {
+                opacity: 0;
+                margin-left: 700px;
+            }
+            .leo-enter-active {
+                opacity: 1;
+                transition: 2.7s;
+                margin-left: 0;
+            }
+            .leo-leave {
+                opacity: 0;
+                transition: 2.7s;
+            }
         `
     }
     click() {
+        console.log(this.state.v)
         this.setState({
             v: !this.state.v
         })
     }
     render() {
-        let oDiv = [this.state.v ? <div key={1} className='myDiv'></div> : '']
+        let oDiv = [this.state.v ? <div key={1} className='leo'></div> : '']
         return (
             <div className="App">
                 {/* <Tab tabJson={tabJson}></Tab> */}
