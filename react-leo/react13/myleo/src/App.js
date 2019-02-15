@@ -16,7 +16,8 @@ class App extends Component {
         super()
         this.state = {
             myarr: ["myInput"],
-            v: true
+            v: true,
+            divArr: []
         }
     }
     onFocus() {
@@ -75,9 +76,13 @@ class App extends Component {
         this.setState({
             v: !this.state.v
         })
+        let newArr = this.state.divArr.concat([<div key={Math.random()}>{this.refs.inputValue.value}</div>])
+        this.setState({
+            divArr: newArr
+        })
     }
     render() {
-        let oDiv = [this.state.v ? <div key={1} className='leo'></div> : '']
+        // let oDiv = [this.state.v ? <div key={1} className='leo'></div> : '']
         return (
             <div className="App">
                 {/* <Tab tabJson={tabJson}></Tab> */}
@@ -85,6 +90,7 @@ class App extends Component {
                 <input type="text" className={this.state.myarr.join(" ")} onFocus={this.onFocus.bind(this)} onBlur={this.onBlur.bind(this)} />
                 <style dangerouslySetInnerHTML={{ __html: this.css() }}></style>
                 <br />
+                <input type="text" ref="inputValue"/>
                 <input type="button" value="切换" onClick={this.click.bind(this)} />
                 <div className="myDiv" style={{ display: this.state.v ? "block" : "none" }}></div>
                 <CSSTransitionGroup
@@ -92,8 +98,10 @@ class App extends Component {
                     transitionEnterTimeout={1700}
                     transitionLeaveTimeout={1700}
                     transitionAppear={true}
+                    transitionAppearTimeout={1700}
                 >
-                    {oDiv}
+                    {/* {oDiv} */}
+                    {this.state.divArr}
                 </CSSTransitionGroup>
             </div>
         );

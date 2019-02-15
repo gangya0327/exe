@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-}
-
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -166,7 +162,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   outline: none;
-  margin: 50px;
+  margin: 50px 0;
   text-indent: 10px;
   font-size: 26px;
   background-color: #d9d9d9;
@@ -177,4 +173,9 @@
   width: 260px;
   color: #777;
   background-color: #ff888d;
+}
+
+.App {
+  margin-left: 50px;
+  text-align: center;
 }
