@@ -16,7 +16,7 @@ class App extends Component {
         super()
         this.state = {
             myarr: ["myInput"],
-            v: false
+            v: true
         }
     }
     onFocus() {
@@ -35,25 +35,38 @@ class App extends Component {
                 width: 150px;
                 height: 80px;
                 background: red;
-                margin: 20px auto;
+                margin: 20px 0;
             }
             .leo {
                 width: 150px;
                 height: 80px;
                 background: red;
             }
-            .leo-enter {
+            .leo-enter { // 进入之前的样式
                 opacity: 0;
-                margin-left: 700px;
+                margin-left: 200px;
             }
-            .leo-enter-active {
+            .leo-enter-active { // 进入之后的样式
                 opacity: 1;
-                transition: 2.7s;
+                transition: 1.7s;
                 margin-left: 0;
             }
-            .leo-leave {
+            .leo-leave { // 离开的样式
+                opacity: 1;
+                transition: 1.7s;
+                margin-left: 300px;             
+            }
+            .leo-leave-enter { // 离开之后的样式
                 opacity: 0;
-                transition: 2.7s;
+            }
+            .leo-appear {
+                opacity: 1;
+                background: black;
+            }
+            .leo-appear-active {
+                opacity: 0;
+                background: yellow;
+                transition: 1.7s;
             }
         `
     }
@@ -76,8 +89,9 @@ class App extends Component {
                 <div className="myDiv" style={{ display: this.state.v ? "block" : "none" }}></div>
                 <CSSTransitionGroup
                     transitionName='leo'
-                    transitionEnterTimeout={700}
-                    transitionLeaveTimeout={500}
+                    transitionEnterTimeout={1700}
+                    transitionLeaveTimeout={1700}
+                    transitionAppear={true}
                 >
                     {oDiv}
                 </CSSTransitionGroup>
