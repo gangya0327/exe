@@ -49,6 +49,7 @@ body {
   height: 416px;
   background-color: #fff;
   position: absolute;
+  box-shadow: 0 0 5px #aaa;
 }
 
 .myUl>li img {
@@ -84,4 +85,9 @@ body {
   margin: 0 8px;
   border-radius: 50%;
   cursor: pointer;
+  transition: .7s;
+}
+
+.myOl li.active {
+  transform: scale(2) rotateY(180deg);
 }

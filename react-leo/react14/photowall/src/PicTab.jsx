@@ -7,7 +7,8 @@ export default class PicTab extends Component {
             rotate: [],
             left: [],
             top: [],
-            zIndex: []
+            zIndex: [],
+            index: 0
         }
     }
     //
@@ -41,8 +42,12 @@ export default class PicTab extends Component {
             zIndex: newZIndex
         })
     }
-    click(i) {
+    click(i,e) {
         this.random(i)
+        console.log(e.target)
+        this.setState({
+            index: i
+        })
     }
     render() {
         console.log(this.props.PicJson)
@@ -60,7 +65,7 @@ export default class PicTab extends Component {
                 <img src={v} alt="" />
                 <div className="textNode">{this.props.PicJson.text[i]}</div>
             </li>)
-            oLi.push(<li key={i} onClick={this.click.bind(this, i)}></li>)
+            oLi.push(<li className={i === this.state.index ? "active" : ""} key={i} onClick={this.click.bind(this, i)}></li>)
         });
         return (
             <div>
