@@ -8,21 +8,21 @@ export default class PicTab extends Component {
             left: [],
             top: [],
             zIndex: [],
-            index: 0
+            index: 0,
+            rotateY: []
         }
     }
-    //
     componentDidMount() {
         this.random()
     }
     random(index) {
-        console.log(index)
-
         let newRotate = []
         let newLeft = []
         let newTop = []
         let newZIndex = []
+        let newRotateY = []
         this.props.PicJson.picUrl.forEach((v, i) => {
+            newRotateY.push(0)
             if (i === index) {
                 newRotate.push(0)
                 newLeft.push('calc(50% - 180px)')
@@ -39,15 +39,28 @@ export default class PicTab extends Component {
             rotate: newRotate,
             left: newLeft,
             top: newTop,
-            zIndex: newZIndex
+            zIndex: newZIndex,
+            rotateY: newRotateY
         })
     }
-    click(i,e) {
+    click(i, e) {
         this.random(i)
-        console.log(e.target)
-        this.setState({
-            index: i
-        })
+        if (e.target.classList.contains("active")) {
+            if (e.target.classList.contains("dbActive")) {
+                e.target.classList.remove("dbActive")
+                this.state.rotateY.splice(i, 1, 0)
+            } else {
+                e.target.classList.add("dbActive")
+                this.state.rotateY.splice(i, 1, 180)
+            }
+            this.setState({
+                rotateY: this.state.rotateY
+            })
+        } else {
+            this.setState({
+                index: i
+            })
+        }
     }
     render() {
         console.log(this.props.PicJson)
@@ -56,14 +69,17 @@ export default class PicTab extends Component {
         this.props.PicJson.picUrl.forEach((v, i) => {
             aLi.push(<li key={i}
                 style={{
-                    transform: "rotate(" + this.state.rotate[i] + "deg)",
+                    transform: "perspective(800px) rotate(" + this.state.rotate[i] + "deg) rotateY(" + this.state.rotateY[i] + "deg)",
                     left: this.state.left[i],
                     top: this.state.top[i],
                     transition: Math.random() * 0.4 + 0.3 + "s",
                     zIndex: this.state.zIndex[i]
                 }}>
-                <img src={v} alt="" />
-                <div className="textNode">{this.props.PicJson.text[i]}</div>
+                <div className="zm">
+                    <img src={v} alt="" />
+                    <div className="textNode">{this.props.PicJson.text[i]}</div>
+                </div>
+                <div className="bm">{this.props.PicJson.bText[i]}</div>
             </li>)
             oLi.push(<li className={i === this.state.index ? "active" : ""} key={i} onClick={this.click.bind(this, i)}></li>)
         });

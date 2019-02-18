@@ -50,9 +50,14 @@ body {
   background-color: #fff;
   position: absolute;
   box-shadow: 0 0 5px #aaa;
+  transform-style: preserve-3d;
 }
 
-.myUl>li img {
+.myUl>li.active {
+  transform: rotateY(180deg);
+}
+
+.myUl>li .zm img {
   width: 285px;
   height: 192px;
   position: absolute;
@@ -61,12 +66,33 @@ body {
   top: 93px;
 }
 
-.myUl>li .textNode {
+.myUl>li .zm {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateZ(1px);
+}
+
+.myUl>li .zm .textNode {
   width: 100%;
   position: absolute;
   text-align: center;
   bottom: 24px;
   color: #4d55dd;
+}
+
+
+.myUl>li .bm {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateZ(-1px) scaleX(-1);
+  text-align: center;
+  margin-top: 50px;
 }
 
 .myOl {
@@ -90,4 +116,9 @@ body {
 
 .myOl li.active {
   transform: scale(2) rotateY(180deg);
+}
+
+.myOl li.dbActive {
+  transform: scale(2) rotateY(180deg);
+  background-color: yellow;
 }
