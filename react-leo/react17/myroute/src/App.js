@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, } from 'react-router-dom'
 import './App.css';
 
-class About extends Component {
-    render() {
-        return (
-            <div>
-                About page
-            </div>
-        )
-    }
+const About = ({match}) => {
+    console.log(match)
+    return (
+        <div>
+            About me page
+        </div>
+    )
 }
 class Home extends Component {
     render() {
@@ -22,10 +21,34 @@ class Home extends Component {
 }
 class News extends Component {
     render() {
+        console.log(this.props.match)
         return (
-            <div>
-                News page
-            </div>
+            <Router>
+                <div>
+                    <ul>
+                        <li><Link to={this.props.match.url + '/football'}>足球</Link></li>
+                        <li><Link to={this.props.match.url + '/basketball'}>篮球</Link></li>
+                        <li><Link to={this.props.match.url + '/run'}>跑步</Link></li>
+                    </ul>
+                    <Route path='/news/:leo' component={Sport} />
+                </div>
+            </Router>
+        )
+    }
+}
+
+class Sport extends Component {
+    render() {
+        let html = ""
+        if (this.props.match.params.leo === "football") {
+            html = "踢足球"
+        } else if (this.props.match.params.leo === "basketball") {
+            html = "打篮球"
+        } else if (this.props.match.params.leo === "run") {
+            html = "去跑步"
+        }
+        return (
+            <div>{html}</div>
         )
     }
 }
@@ -36,7 +59,9 @@ class App extends Component {
             <Router>
                 <div>
                     <Link to='/'>首页</Link>
+                    <span>  </span>
                     <Link to='/news'>新闻</Link>
+                    <span>  </span>
                     <Link to='/about'>关于</Link>
 
                     <Route exact path='/' component={Home} />
