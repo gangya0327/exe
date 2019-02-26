@@ -1,0 +1,1 @@
+export const bookInit = ["乔布斯传", "React小记"]
