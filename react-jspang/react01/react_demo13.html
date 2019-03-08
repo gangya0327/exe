@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+
+    <script src="../js/react/react.min.js"></script>
+    <script src="../js/react/react-dom.min.js"></script>
+    <script src="../js/babel/browser.min.js"></script>
+
+    <script type="text/babel">
+        var MyForm = React.createClass({
+            getInitialState: function () {
+                return {
+                    username: '',
+                    gender: 'male',
+                    checkbox: true
+                }
+            },
+            handleChange: function (event) {
+                var newState = {}
+                newState[event.target.name] = event.target.name === 'checkbox' ? event.target.checked : event.target.value
+                this.setState(newState)
+            },
+            handleSubmit: function (e) {
+                e.preventDefault()
+                var is = this.state.checkbox?'是':'不是'
+                var gender = this.state.gender
+                var name = this.state.username
+                console.log(name,is,gender)
+            },
+            render: function () {
+                return (
+                   <form>
+                        <div>
+                            <label htmlFor="username">输入姓名</label>
+                            <input type="text" name='username' id='username' onChange={this.handleChange}/>
+                        </div>
+                        <div>
+                            <label htmlFor="checkbox">是/否</label>
+                            <input type="checkbox" name='checkbox' id='checkbox' checked={this.state.checkbox}
+                                onChange={this.handleChange}/>
+                        </div>
+                        <div>
+                            <label htmlFor="gender">性别</label>
+                            <select name='gender' onChange={this.handleChange}>
+                                <option value='male'>男</option>
+                                <option value='female'>女</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button type='submit' onClick={this.handleSubmit}>提交</button>
+                        </div>
+                   </form>
+                )
+            }
+        })
+        ReactDOM.render(
+            <MyForm/>, 
+            document.getElementById('demo'))
+    </script>
+</body>
+
+</html>

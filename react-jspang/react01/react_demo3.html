@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="reactContainer"></div>
+
+    <script src="../js/react/react.min.js"></script>
+    <script src="../js/react/react-dom.min.js"></script>
+    <script src="../js/babel/browser.min.js"></script>
+
+    <script type="text/babel">
+        let names = ['raven','peter','john','cassandra']
+        var HelloComponent = React.createClass({
+            render: function() {
+                return <div>
+                    {
+                        names.map(function(name){
+                            return <div key={name}>hi {name}</div>
+                        })
+                    }
+                </div>
+            }
+        })
+        ReactDOM.render(<HelloComponent/>, document.getElementById('reactContainer'))
+    </script>
+</body>
+
+</html>

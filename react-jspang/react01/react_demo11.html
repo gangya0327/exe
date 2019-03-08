@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+
+    <script src="../js/react/react.min.js"></script>
+    <script src="../js/react/react-dom.min.js"></script>
+    <script src="../js/babel/browser.min.js"></script>
+
+    <script type="text/babel">
+        var MyComponent = React.createClass({
+            handleClick: function () {
+              this.refs.myInput.focus()
+            },
+            render: function () {
+                return (
+                   <div>
+                        <input type='text' ref='myInput'/>
+                        <input type='button' value='focus input' onClick={this.handleClick}/>
+                    </div>
+                )
+            }
+        })
+        ReactDOM.render(
+            <MyComponent/>, 
+            document.getElementById('demo'))
+    </script>
+</body>
+
+</html>
