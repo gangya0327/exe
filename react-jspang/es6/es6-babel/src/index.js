@@ -25,3 +25,8 @@ function showRest(first, ...arg) {
     }
 }
 showRest(1, 2, 3, 4, 5)
+
+let name='peter'
+let word=`this is <br/>
+ my ${name},hello.`
+console.log(word)

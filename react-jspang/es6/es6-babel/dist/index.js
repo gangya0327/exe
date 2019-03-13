@@ -58,3 +58,7 @@ function showRest(first) {
     }
 }
 showRest(1, 2, 3, 4, 5);
+
+var name = 'peter';
+var word = "this is <br/>\n my " + name + ",hello.";
+console.log(word);
